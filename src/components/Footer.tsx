@@ -1,0 +1,95 @@
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-muted py-10">
+      <div className="section-container">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 className="text-2xl font-bold mb-4">
+              <span className="text-white">Khan</span>
+              <span className="text-khan-gold">Group</span>
+            </h3>
+            <p className="text-white/70 mb-4">
+              Building a legacy of innovation, leadership, and success across multiple industries.
+            </p>
+            <p className="text-white/50 text-sm">
+              Sadahawa, Rupandehi, Nepal
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-bold text-white mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <a href="#home" className="text-white/70 hover:text-khan-gold transition-colors">Home</a>
+              </li>
+              <li>
+                <a href="#about" className="text-white/70 hover:text-khan-gold transition-colors">About</a>
+              </li>
+              <li>
+                <a href="#portfolio" className="text-white/70 hover:text-khan-gold transition-colors">Portfolio</a>
+              </li>
+              <li>
+                <a href="#services" className="text-white/70 hover:text-khan-gold transition-colors">Services</a>
+              </li>
+              <li>
+                <a href="#contact" className="text-white/70 hover:text-khan-gold transition-colors">Contact</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-bold text-white mb-4">Contact Info</h4>
+            <ul className="space-y-2">
+              <li className="text-white/70">
+                <span className="text-khan-gold mr-2">Email:</span>
+                <a href="mailto:salahuddinpvtt@gmail.com" className="hover:text-khan-gold transition-colors">
+                  salahuddinpvtt@gmail.com
+                </a>
+              </li>
+              <li className="text-white/70">
+                <span className="text-khan-gold mr-2">Phone:</span>
+                <a href="tel:+9779707455404" className="hover:text-khan-gold transition-colors">
+                  +977 9707455404
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-white/50 text-sm mb-4 md:mb-0">
+            &copy; {currentYear} Khan Group. All rights reserved.
+          </p>
+          <div className="flex space-x-4">
+            <a 
+              href="#" 
+              className="text-white/50 hover:text-khan-gold transition-colors"
+              aria-label="YouTube"
+            >
+              YouTube
+            </a>
+            <a 
+              href="#" 
+              className="text-white/50 hover:text-khan-gold transition-colors"
+              aria-label="TikTok"
+            >
+              TikTok
+            </a>
+            <a 
+              href="#" 
+              className="text-white/50 hover:text-khan-gold transition-colors"
+              aria-label="Facebook"
+            >
+              Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
