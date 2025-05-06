@@ -1,4 +1,6 @@
 
+import { Facebook, Instagram, Youtube } from 'lucide-react';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -35,6 +37,9 @@ const Footer = () => {
                 <a href="#services" className="text-white/70 hover:text-khan-gold transition-colors">Services</a>
               </li>
               <li>
+                <a href="#testimonials" className="text-white/70 hover:text-khan-gold transition-colors">Testimonials</a>
+              </li>
+              <li>
                 <a href="#contact" className="text-white/70 hover:text-khan-gold transition-colors">Contact</a>
               </li>
             </ul>
@@ -56,6 +61,37 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+            
+            <h4 className="text-lg font-bold text-white mb-2 mt-4">Social Media</h4>
+            <div className="flex space-x-4">
+              <a 
+                href="https://www.facebook.com/Salahuddinkhannn" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-khan-gold transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={24} />
+              </a>
+              <a 
+                href="https://www.facebook.com/salahuddin__k" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-khan-gold transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={24} />
+              </a>
+              <a 
+                href="https://youtube.com/@dhamakayt_short?si=qJUVpVpvfsqJGppD" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-khan-gold transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube size={24} />
+              </a>
+            </div>
           </div>
         </div>
         
@@ -63,29 +99,6 @@ const Footer = () => {
           <p className="text-white/50 text-sm mb-4 md:mb-0">
             &copy; {currentYear} Khan Group. All rights reserved.
           </p>
-          <div className="flex space-x-4">
-            <a 
-              href="#" 
-              className="text-white/50 hover:text-khan-gold transition-colors"
-              aria-label="YouTube"
-            >
-              YouTube
-            </a>
-            <a 
-              href="#" 
-              className="text-white/50 hover:text-khan-gold transition-colors"
-              aria-label="TikTok"
-            >
-              TikTok
-            </a>
-            <a 
-              href="#" 
-              className="text-white/50 hover:text-khan-gold transition-colors"
-              aria-label="Facebook"
-            >
-              Facebook
-            </a>
-          </div>
         </div>
       </div>
     </footer>

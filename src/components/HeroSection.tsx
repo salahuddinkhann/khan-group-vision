@@ -1,5 +1,6 @@
 
 import { ArrowRight } from 'lucide-react';
+import AnimatedText from './AnimatedText';
 
 const HeroSection = () => {
   return (
@@ -16,13 +17,14 @@ const HeroSection = () => {
       
       <div className="section-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="animate-fade-up">
+          <div className="animate-fade-up order-2 lg:order-1">
             <h4 className="text-khan-gold font-semibold mb-4 uppercase tracking-wider">Salahuddin Khan</h4>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
               Future Tycoon of <span className="gold-gradient-text">Nepal</span>
             </h1>
-            <h2 className="text-xl md:text-2xl font-montserrat text-white/90 mb-6">
-              Entrepreneur | Investor | Visionary Leader
+            <h2 className="text-xl md:text-2xl font-montserrat text-white/90 mb-6 flex items-center gap-2">
+              <span>I am a </span>
+              <AnimatedText words={["Businessman", "Investor", "Tech Consultant"]} />
             </h2>
             <p className="text-white/70 text-lg mb-8 max-w-lg">
               Building a business empire with ambition, innovation, and a commitment to excellence. 
@@ -39,13 +41,14 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="hidden lg:flex justify-center animate-fade-in">
+          <div className="flex justify-center animate-fade-in order-1 lg:order-2">
             <div className="relative">
-              <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-khan-blue animate-pulse-glow">
-                <div className="w-full h-full bg-gradient-to-r from-khan-blue to-khan-lightblue/60 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-white">SK</span>
-                </div>
-              </div>
+              <img 
+                src="https://i.postimg.cc/MTrRPjWj/1740569004827-removebg-preview.png" 
+                alt="Salahuddin Khan" 
+                className="max-w-full h-auto rounded-[25px] border-4 border-khan-blue/30 shadow-lg shadow-khan-blue/30 animate-fade-in"
+                style={{ maxHeight: "450px" }}
+              />
               <div className="absolute -bottom-4 -right-4 bg-khan-dark px-4 py-2 rounded-lg border border-khan-gold">
                 <span className="text-khan-gold font-bold">Vision 2030</span>
               </div>

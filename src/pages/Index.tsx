@@ -5,8 +5,10 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ServicesSection from '@/components/ServicesSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import BackToTop from '@/components/BackToTop';
 
 const Index = () => {
   // Smooth scroll implementation
@@ -39,8 +41,10 @@ const Index = () => {
       <AboutSection />
       <PortfolioSection />
       <ServicesSection />
+      <TestimonialsSection />
       <ContactSection />
       <Footer />
+      <BackToTop />
     </div>
   );
 };
