@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
@@ -19,8 +18,14 @@ const ContactForm = () => {
   useEffect(() => {
     // Check if EmailJS is already loaded
     if (window.emailjs) {
-      window.emailjs.init("ZB3c_CLmtPDHMB_zC");
-      setIsScriptLoaded(true);
+      try {
+        window.emailjs.init("ZB3c_CLmtPDHMB_zC");
+        setIsScriptLoaded(true);
+        console.log("EmailJS already loaded and initialized");
+      } catch (error) {
+        console.error("Error initializing EmailJS:", error);
+        setScriptError("Failed to initialize EmailJS. Please try again later.");
+      }
       return;
     }
 
@@ -30,9 +35,15 @@ const ContactForm = () => {
     script.async = true;
     
     script.onload = () => {
-      // Initialize EmailJS with public key
-      window.emailjs.init("ZB3c_CLmtPDHMB_zC");
-      setIsScriptLoaded(true);
+      try {
+        // Initialize EmailJS with public key
+        window.emailjs.init("ZB3c_CLmtPDHMB_zC");
+        setIsScriptLoaded(true);
+        console.log("EmailJS script loaded and initialized successfully");
+      } catch (error) {
+        console.error("Error initializing EmailJS:", error);
+        setScriptError("Failed to initialize EmailJS. Please try again later.");
+      }
     };
     
     script.onerror = () => {
@@ -70,6 +81,14 @@ const ContactForm = () => {
     console.log("Sending email with data:", formData);
     
     try {
+      if (typeof window.emailjs === 'undefined') {
+        throw new Error("EmailJS is not defined");
+      }
+
+      if (typeof window.emailjs.send !== 'function') {
+        throw new Error("EmailJS send method is not available");
+      }
+      
       // Log the parameters to help with debugging
       console.log("EmailJS parameters:", {
         serviceId: "service_bzmdaus",
@@ -112,7 +131,7 @@ const ContactForm = () => {
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      toast.error("Failed to send your message. Please try again.");
+      toast.error(`Failed to send your message: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setIsSubmitting(false);
     }
