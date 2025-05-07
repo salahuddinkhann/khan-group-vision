@@ -1,6 +1,7 @@
 
-import { useState } from 'react';
-import { Mail, Phone, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Mail, Phone, Send, User } from 'lucide-react';
+import { toast } from '@/components/ui/sonner';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,27 @@ const ContactSection = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
+
+  useEffect(() => {
+    // Load EmailJS SDK
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.async = true;
+    
+    script.onload = () => {
+      // Initialize EmailJS with public key
+      window.emailjs.init("ZB3c_CLmtPDHMB_zC");
+    };
+    
+    document.body.appendChild(script);
+    
+    return () => {
+      // Clean up
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,28 +42,42 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await window.emailjs.send(
+        "service_bzmdaus", 
+        "template_rmkfyhv",
+        {
+          from_name: formData.name,
+          to_name: "Salahuddin Khan",
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }
+      );
+      
+      if (response.status === 200) {
+        toast.success("Your message has been sent successfully!");
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast.error("Failed to send your message. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus(null);
-      }, 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -89,27 +124,27 @@ const ContactSection = () => {
               
               <div className="flex items-start space-x-4">
                 <div className="icon-box">
-                  <ExternalLink size={20} />
+                  <User size={20} />
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-1">Social Media</h4>
                   <div className="flex space-x-4 mt-2">
                     <a 
-                      href="#" 
+                      href="https://youtube.com/@dhamakayt_short?si=qJUVpVpvfsqJGppD" 
                       className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-white hover:bg-khan-blue transition-colors"
                       aria-label="YouTube"
                     >
                       YT
                     </a>
                     <a 
-                      href="#" 
+                      href="https://www.instagram.com/salahuddin__k" 
                       className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-white hover:bg-khan-blue transition-colors"
-                      aria-label="TikTok"
+                      aria-label="Instagram"
                     >
-                      TT
+                      IG
                     </a>
                     <a 
-                      href="#" 
+                      href="https://www.facebook.com/Salahuddinkhannn" 
                       className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-white hover:bg-khan-blue transition-colors"
                       aria-label="Facebook"
                     >
@@ -190,22 +225,10 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full flex items-center justify-center"
+                  className="btn-primary w-full flex items-center justify-center gap-2"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={18} />
                 </button>
-                
-                {submitStatus === 'success' && (
-                  <p className="mt-4 text-green-500 text-center">
-                    Your message has been sent successfully!
-                  </p>
-                )}
-                
-                {submitStatus === 'error' && (
-                  <p className="mt-4 text-red-500 text-center">
-                    There was an error sending your message. Please try again.
-                  </p>
-                )}
               </div>
             </form>
           </div>

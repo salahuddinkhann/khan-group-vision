@@ -10,6 +10,21 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 
+// Add EmailJS types
+declare global {
+  interface Window {
+    emailjs: {
+      init: (publicKey: string) => void;
+      send: (
+        serviceId: string,
+        templateId: string,
+        templateParams: Record<string, unknown>,
+        publicKey?: string
+      ) => Promise<{ status: number; text: string }>;
+    };
+  }
+}
+
 const Index = () => {
   // Smooth scroll implementation
   useEffect(() => {

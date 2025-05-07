@@ -22,7 +22,7 @@ const ServicesSection = () => {
       title: "Financial Consulting",
       description: "Expert advice on financial planning, budgeting, and wealth management strategies.",
       icon: "📊",
-      image: "https://images.unsplash.com/photo-1565514913079-4edcaa0cfd30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       status: "Coming Soon"
     },
     {
@@ -58,6 +58,7 @@ const ServicesSection = () => {
                   src={service.image} 
                   alt={service.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-khan-dark via-khan-dark/80 to-transparent"></div>
                 <div className="absolute bottom-3 right-3">
