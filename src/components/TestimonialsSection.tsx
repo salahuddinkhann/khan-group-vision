@@ -29,19 +29,19 @@ const TestimonialsSection = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section id="testimonials" className="py-20 bg-muted">
+    <section id="testimonials" className="py-14 bg-muted">
       <div className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 animate-fade-in">
             Client <span className="gold-gradient-text">Feedback</span>
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto">
             What people say about working with me and Khan Group.
           </p>
-          <div className="w-20 h-1 bg-khan-blue mx-auto mt-4"></div>
+          <div className="w-20 h-1 bg-khan-blue mx-auto mt-3"></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((item) => (
             <Card 
               key={item.id} 
@@ -51,13 +51,13 @@ const TestimonialsSection = () => {
               onMouseEnter={() => setHoveredCard(item.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <CardContent className="pt-6 pb-6 relative">
+              <CardContent className="pt-5 pb-5 relative">
                 <div className="absolute top-4 left-4 text-khan-gold opacity-20">
                   <Quote size={40} />
                 </div>
                 
                 <div className="relative z-10">
-                  <p className="text-white/90 mb-8 italic">"{item.content}"</p>
+                  <p className="text-white/90 mb-6 italic">"{item.content}"</p>
                   
                   <div className="flex items-center">
                     <Avatar className="h-12 w-12 border-2 border-khan-gold">

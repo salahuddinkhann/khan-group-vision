@@ -38,11 +38,13 @@ const Index = () => {
     <div className="min-h-screen bg-khan-dark text-white">
       <Navbar />
       <HeroSection />
-      <AboutSection />
-      <PortfolioSection />
-      <ServicesSection />
-      <TestimonialsSection />
-      <ContactSection />
+      <div className="space-y-0"> {/* Removed spacing between sections */}
+        <AboutSection />
+        <PortfolioSection />
+        <ServicesSection />
+        <TestimonialsSection />
+        <ContactSection />
+      </div>
       <Footer />
       <BackToTop />
     </div>

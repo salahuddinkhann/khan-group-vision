@@ -5,9 +5,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-muted py-10">
-      <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <footer className="bg-muted py-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
           <div>
             <h3 className="text-2xl font-bold mb-4">
               <span className="text-white">Khan</span>
@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-bold text-white mb-4">Quick Links</h4>
+            <h4 className="text-lg font-bold text-white mb-3">Quick Links</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#home" className="text-white/70 hover:text-khan-gold transition-colors">Home</a>
@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-bold text-white mb-4">Contact Info</h4>
+            <h4 className="text-lg font-bold text-white mb-3">Contact Info</h4>
             <ul className="space-y-2">
               <li className="text-white/70">
                 <span className="text-khan-gold mr-2">Email:</span>
@@ -68,7 +68,7 @@ const Footer = () => {
                 href="https://www.facebook.com/Salahuddinkhannn" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-khan-gold transition-colors"
+                className="text-white/70 hover:text-khan-gold transition-colors hover:scale-110 transform duration-200"
                 aria-label="Facebook"
               >
                 <Facebook size={24} />
@@ -77,7 +77,7 @@ const Footer = () => {
                 href="https://www.facebook.com/salahuddin__k" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-khan-gold transition-colors"
+                className="text-white/70 hover:text-khan-gold transition-colors hover:scale-110 transform duration-200"
                 aria-label="Instagram"
               >
                 <Instagram size={24} />
@@ -86,7 +86,7 @@ const Footer = () => {
                 href="https://youtube.com/@dhamakayt_short?si=qJUVpVpvfsqJGppD" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-khan-gold transition-colors"
+                className="text-white/70 hover:text-khan-gold transition-colors hover:scale-110 transform duration-200"
                 aria-label="YouTube"
               >
                 <Youtube size={24} />
@@ -95,8 +95,8 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white/50 text-sm mb-4 md:mb-0">
+        <div className="border-t border-white/10 pt-4 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-white/50 text-sm mb-2 md:mb-0">
             &copy; {currentYear} Khan Group. All rights reserved.
           </p>
         </div>

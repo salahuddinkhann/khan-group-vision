@@ -1,29 +1,29 @@
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 bg-muted">
+    <section id="about" className="py-14 bg-muted">
       <div className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             About <span className="gold-gradient-text">Salahuddin Khan</span>
           </h2>
           <div className="w-20 h-1 bg-khan-blue mx-auto"></div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="order-2 lg:order-1">
-            <h3 className="text-2xl font-bold mb-6 text-white">My Story</h3>
-            <p className="mb-4 text-white/80">
+            <h3 className="text-2xl font-bold mb-4 text-white">My Story</h3>
+            <p className="mb-3 text-white/80">
               Born and raised in Sadahawa, Gaidahawa Municipality, Rupandehi, I am currently a Class 9 student with extraordinary ambitions. At a young age, I've already begun building my business empire under the brand "Khan Group".
             </p>
-            <p className="mb-4 text-white/80">
+            <p className="mb-3 text-white/80">
               My passion for business, investment, and politics drives me to excel in everything I do. I believe in the power of vision, determination, and strategic thinking to achieve remarkable success.
             </p>
-            <p className="mb-6 text-white/80">
+            <p className="mb-4 text-white/80">
               With my focus on launching Khan Finance, entering the stock market at 18, and eventually stepping into political leadership as a municipality mayor, I'm determined to make a lasting impact on Nepal's economic and political landscape.
             </p>
             
-            <div className="border-l-4 border-khan-gold pl-4 py-2 mb-8">
+            <div className="border-l-4 border-khan-gold pl-4 py-2 mb-6">
               <blockquote className="text-xl font-montserrat italic text-white">
                 "Success isn't just about what you accomplish, but about inspiring others and creating opportunities for growth."
               </blockquote>
