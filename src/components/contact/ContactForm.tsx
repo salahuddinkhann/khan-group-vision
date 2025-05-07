@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +13,17 @@ const ContactForm = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+  const [scriptError, setScriptError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Check if EmailJS is already loaded
+    if (window.emailjs) {
+      window.emailjs.init("ZB3c_CLmtPDHMB_zC");
+      setIsScriptLoaded(true);
+      return;
+    }
+
     // Load EmailJS SDK
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
@@ -22,6 +32,12 @@ const ContactForm = () => {
     script.onload = () => {
       // Initialize EmailJS with public key
       window.emailjs.init("ZB3c_CLmtPDHMB_zC");
+      setIsScriptLoaded(true);
+    };
+    
+    script.onerror = () => {
+      setScriptError("Failed to load EmailJS. Please try again later.");
+      console.error("EmailJS script failed to load");
     };
     
     document.body.appendChild(script);
@@ -44,9 +60,29 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isScriptLoaded) {
+      toast.error("Email service is not available yet. Please try again in a moment.");
+      return;
+    }
+    
     setIsSubmitting(true);
+    console.log("Sending email with data:", formData);
     
     try {
+      // Log the parameters to help with debugging
+      console.log("EmailJS parameters:", {
+        serviceId: "service_bzmdaus",
+        templateId: "template_rmkfyhv",
+        templateParams: {
+          from_name: formData.name,
+          to_name: "Salahuddin Khan",
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }
+      });
+      
       const response = await window.emailjs.send(
         "service_bzmdaus", 
         "template_rmkfyhv",
@@ -59,6 +95,8 @@ const ContactForm = () => {
         }
       );
       
+      console.log("EmailJS response:", response);
+      
       if (response.status === 200) {
         toast.success("Your message has been sent successfully!");
         
@@ -70,7 +108,7 @@ const ContactForm = () => {
           message: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(`Failed to send message. Status: ${response.status}`);
       }
     } catch (error) {
       console.error('Error sending email:', error);
@@ -83,6 +121,12 @@ const ContactForm = () => {
   return (
     <div>
       <h3 className="text-2xl font-bold mb-6 text-white">Send Me a Message</h3>
+      
+      {scriptError && (
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{scriptError}</AlertDescription>
+        </Alert>
+      )}
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
@@ -140,7 +184,7 @@ const ContactForm = () => {
         <div>
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isScriptLoaded}
             className="btn-primary w-full flex items-center justify-center gap-2"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={18} />
